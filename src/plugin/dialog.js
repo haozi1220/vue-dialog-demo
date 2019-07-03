@@ -1,7 +1,7 @@
 /**dialog js */
 import Dialog from './dialog.vue'
 const dialogs = {
-    install(Vue, options) {
+    install(Vue, opt) {
         Vue.prototype.$dialog = (opt = {}) => {
             // 默认参数
             let defaultOpt = {
@@ -33,10 +33,20 @@ const dialogs = {
                 document.body.removeChild(vm.$el);
                 vm.$destroy();
                 this.vm = null;
-            })
-        };
-        console.log('installed');
-        
+            });
+            let slotTemp = Vue.compile(opt.title.domTemp);
+            let slotContent = {
+                data(){return {}},
+                methods: {
+                    showAlert(){
+                        alert(3333);
+                    }
+                },
+                render: slotTemp.render,
+                staticRenderFns: slotTemp.staticRenderFns
+            }
+            vm.$slots.title = [vm.$createElement(slotContent)];
+        };    
     }
 }
 

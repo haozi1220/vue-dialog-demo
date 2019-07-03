@@ -94,7 +94,7 @@ export default {
   methods: {
     showDialog(){
       this.$dialog({
-        title: 'QQ空间',
+        title: {domTemp: `<div slot="title"><p @click="showAlert">33333</p></div>`},
         content: "是否去QQ空间?",
         confirmText: '我要去',
         cancleText: '算了吧',

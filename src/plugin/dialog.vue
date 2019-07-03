@@ -4,7 +4,10 @@
         <div class="dialog_mask"></div>
         <div class="dialog_wrap">
             <!-- 标题 -->
-            <div class="dialog_header" v-if="title">{{title}}</div>
+            <div>
+                <div  class="dialog_header" v-if="typeof title == 'string'">{{title}}</div>
+                <slot v-else name="title"></slot>
+            </div>
             <!-- 主体 -->
             <div class="dialog_body">{{content}}</div>
             <!-- 按钮 -->
